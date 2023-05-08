@@ -17,7 +17,6 @@ import com.example.co566app.Adapter.ToDoAdapter;
 
 public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback
 {
-
     private ToDoAdapter adapter;
 
     public RecyclerItemTouchHelper(ToDoAdapter adapter)
@@ -28,8 +27,9 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback
 
 
     @Override
-    public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder
-            viewHolder, @NonNull RecyclerView.ViewHolder target)
+    public boolean onMove(@NonNull RecyclerView recyclerView,
+                          @NonNull RecyclerView.ViewHolder viewHolder,
+                          @NonNull RecyclerView.ViewHolder target)
     {
         return false;
     }
@@ -84,15 +84,14 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback
 
         if (dX > 0)
         {
-            icon = ContextCompat.getDrawable(adapter.getContext(),
-                    R.drawable.ic_launcher_background);
+            icon = ContextCompat.getDrawable(adapter.getContext(), R.drawable.baseline_edit_24);
             background = new ColorDrawable(ContextCompat.getColor(adapter.getContext(),
                     com.google.android.material.R.color.design_default_color_primary_dark));
         }
         else
         {
             icon = ContextCompat.getDrawable(adapter.getContext(),
-                    R.drawable.ic_launcher_background);
+                    R.drawable.baseline_delete_forever_24);
             background = new ColorDrawable(Color.RED);
         }
 
@@ -108,9 +107,10 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback
             icon.setBounds(iconLeft, iconTop, iconRight, iconBottom);
 
             background.setBounds(itemView.getLeft(), itemView.getTop(),
-                    itemView.getLeft() + ((int) dX) + backgroundCornerOffset,
-                    itemView.getBottom());
-        } else if (dX < 0) { // Swiping to the left
+                    itemView.getLeft() + ((int) dX) + backgroundCornerOffset, itemView.getBottom());
+        }
+        else if (dX < 0)
+        { // Swiping to the left
             int iconLeft = itemView.getRight() - iconMargin - icon.getIntrinsicWidth();
             int iconRight = itemView.getRight() - iconMargin;
             icon.setBounds(iconLeft, iconTop, iconRight, iconBottom);

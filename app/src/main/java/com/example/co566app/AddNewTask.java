@@ -25,20 +25,22 @@ import com.example.co566app.Utils.DatabaseHandler;
 
 import java.util.Objects;
 
-public class AddNewTask extends BottomSheetDialogFragment {
-
+public class AddNewTask extends BottomSheetDialogFragment
+{
     public static final String TAG = "ActionBottomDialog";
     private EditText newTaskText;
     private Button newTaskSaveButton;
 
     private DatabaseHandler db;
 
-    public static AddNewTask newInstance(){
+    public static AddNewTask newInstance()
+    {
         return new AddNewTask();
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setStyle(STYLE_NORMAL, androidx.appcompat.R.style.Base_Theme_AppCompat_Dialog);
     }
@@ -46,8 +48,8 @@ public class AddNewTask extends BottomSheetDialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-
+                             @Nullable Bundle savedInstanceState)
+    {
         View view = inflater.inflate(R.layout.new_task, container, false);
         getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
@@ -55,7 +57,8 @@ public class AddNewTask extends BottomSheetDialogFragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
+    {
         super.onViewCreated(view, savedInstanceState);
         newTaskText = requireView().findViewById(R.id.newTaskText);
         newTaskSaveButton = getView().findViewById(R.id.newTaskButton);
@@ -76,11 +79,9 @@ public class AddNewTask extends BottomSheetDialogFragment {
         db = new DatabaseHandler(getActivity());
         db.openDatabase();
 
-        newTaskText.addTextChangedListener(new TextWatcher()
-        {
+        newTaskText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after)
-            {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
             @Override
@@ -93,13 +94,15 @@ public class AddNewTask extends BottomSheetDialogFragment {
                 else
                 {
                     newTaskSaveButton.setEnabled(true);
-                    newTaskSaveButton.setTextColor(ContextCompat.getColor(requireContext(),
-                            com.google.android.material.R.color.design_default_color_primary_dark));
+                    newTaskSaveButton.setTextColor
+                            (ContextCompat.getColor(requireContext(),
+                                    com.google.android.material.R.color.design_default_color_primary_dark));
                 }
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
+            public void afterTextChanged(Editable s)
+            {
             }
         });
 
@@ -110,8 +113,7 @@ public class AddNewTask extends BottomSheetDialogFragment {
             public void onClick(View v)
             {
                 String text = newTaskText.getText().toString();
-                if(finalIsUpdate)
-                {
+                if(finalIsUpdate){
                     db.updateTask(bundle.getInt("id"), text);
                 }
                 else
