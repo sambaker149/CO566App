@@ -66,7 +66,8 @@ public class AddNewTask extends BottomSheetDialogFragment
         boolean isUpdate = false;
 
         final Bundle bundle = getArguments();
-        if(bundle != null){
+        if(bundle != null)
+        {
             isUpdate = true;
             String task = bundle.getString("task");
             newTaskText.setText(task);
@@ -79,15 +80,18 @@ public class AddNewTask extends BottomSheetDialogFragment
         db = new DatabaseHandler(getActivity());
         db.openDatabase();
 
-        newTaskText.addTextChangedListener(new TextWatcher() {
+        newTaskText.addTextChangedListener(new TextWatcher()
+        {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after)
+            {
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count)
             {
-                if(s.toString().equals("")){
+                if(s.toString().equals(""))
+                {
                     newTaskSaveButton.setEnabled(false);
                     newTaskSaveButton.setTextColor(Color.GRAY);
                 }
@@ -129,7 +133,8 @@ public class AddNewTask extends BottomSheetDialogFragment
     }
 
     @Override
-    public void onDismiss(@NonNull DialogInterface dialog){
+    public void onDismiss(@NonNull DialogInterface dialog)
+    {
         Activity activity = getActivity();
         if(activity instanceof DialogCloseListener)
             ((DialogCloseListener)activity).handleDialogClose(dialog);
