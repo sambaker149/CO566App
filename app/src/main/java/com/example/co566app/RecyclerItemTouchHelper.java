@@ -42,7 +42,7 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(adapter.getContext());
             builder.setTitle("Delete Task");
-            builder.setMessage("Are you sure you want to delete this Task?");
+            builder.setMessage("Are you sure you would like to delete this Task?");
             builder.setPositiveButton("Confirm",
                     new DialogInterface.OnClickListener()
                     {
@@ -85,14 +85,16 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback
         if (dX > 0)
         {
             icon = ContextCompat.getDrawable(adapter.getContext(), R.drawable.baseline_edit_24);
+            // Edit Icon
             background = new ColorDrawable(ContextCompat.getColor(adapter.getContext(),
-                    com.google.android.material.R.color.design_default_color_primary_dark));
+                    com.google.android.material.R.color.design_default_color_primary_dark)); //
+            // Dark Background
         }
         else
         {
             icon = ContextCompat.getDrawable(adapter.getContext(),
-                    R.drawable.baseline_delete_forever_24);
-            background = new ColorDrawable(Color.RED);
+                    R.drawable.baseline_delete_forever_24); // Delete Icon
+            background = new ColorDrawable(Color.RED); // Red background colour
         }
 
         assert icon != null;
@@ -101,7 +103,8 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback
         int iconBottom = iconTop + icon.getIntrinsicHeight();
 
         if (dX > 0)
-        { // Swiping to the right
+        {
+            // Swiping right
             int iconLeft = itemView.getLeft() + iconMargin;
             int iconRight = itemView.getLeft() + iconMargin + icon.getIntrinsicWidth();
             icon.setBounds(iconLeft, iconTop, iconRight, iconBottom);
@@ -110,7 +113,8 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback
                     itemView.getLeft() + ((int) dX) + backgroundCornerOffset, itemView.getBottom());
         }
         else if (dX < 0)
-        { // Swiping to the left
+        {
+            // Swiping left
             int iconLeft = itemView.getRight() - iconMargin - icon.getIntrinsicWidth();
             int iconRight = itemView.getRight() - iconMargin;
             icon.setBounds(iconLeft, iconTop, iconRight, iconBottom);
@@ -119,7 +123,8 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback
                     itemView.getTop(), itemView.getRight(), itemView.getBottom());
         }
         else
-        { // view is unSwiped
+        {
+            // View unSwiped
             background.setBounds(0, 0, 0, 0);
         }
 

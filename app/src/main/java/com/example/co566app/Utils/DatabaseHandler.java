@@ -39,17 +39,19 @@ public class DatabaseHandler extends SQLiteOpenHelper
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
     {
-        // Drop older table if existed
+        // Drop older table if they exist
         db.execSQL("DROP TABLE IF EXISTS " + TODO_TABLE);
-        // Create tables again
+        // Recreate tables
         onCreate(db);
     }
 
+    // Open DB
     public void openDatabase()
     {
         db = this.getWritableDatabase();
     }
 
+    // Insert task into DB
     public void insertTask(ToDoModel task)
     {
         ContentValues cv = new ContentValues();
@@ -58,6 +60,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
         db.insert(TODO_TABLE, null, cv);
     }
 
+    // Get all tasks
     public List<ToDoModel> getAllTasks()
     {
         List<ToDoModel> taskList = new ArrayList<>();
@@ -83,7 +86,8 @@ public class DatabaseHandler extends SQLiteOpenHelper
                 }
             }
         }
-        finally {
+        finally
+        {
             db.endTransaction();
             assert cur != null;
             cur.close();
@@ -91,19 +95,25 @@ public class DatabaseHandler extends SQLiteOpenHelper
         return taskList;
     }
 
-    public void updateStatus(int id, int status){
+    // Update task status
+    public void updateStatus(int id, int status)
+    {
         ContentValues cv = new ContentValues();
         cv.put(STATUS, status);
         db.update(TODO_TABLE, cv, ID + "= ?", new String[] {String.valueOf(id)});
     }
 
-    public void updateTask(int id, String task) {
+    // Update task text
+    public void updateTask(int id, String task)
+    {
         ContentValues cv = new ContentValues();
         cv.put(TASK, task);
         db.update(TODO_TABLE, cv, ID + "= ?", new String[] {String.valueOf(id)});
     }
 
-    public void deleteTask(int id){
+    // Delete task
+    public void deleteTask(int id)
+    {
         db.delete(TODO_TABLE, ID + "= ?", new String[] {String.valueOf(id)});
     }
 }

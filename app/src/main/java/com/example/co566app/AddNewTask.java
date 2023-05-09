@@ -19,30 +19,28 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-import com.example.co566app.Adapter.ToDoAdapter;
 import com.example.co566app.Model.ToDoModel;
 import com.example.co566app.Utils.DatabaseHandler;
-
-import java.util.Objects;
 
 public class AddNewTask extends BottomSheetDialogFragment
 {
     public static final String TAG = "ActionBottomDialog";
     private EditText newTaskText;
-    private Button newTaskSaveButton;
+    private Button saveTaskButton;
 
     private DatabaseHandler db;
 
     public static AddNewTask newInstance()
     {
-        return new AddNewTask();
+        return new AddNewTask(); // Adding a new task
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setStyle(STYLE_NORMAL, androidx.appcompat.R.style.Base_Theme_AppCompat_Dialog);
+        setStyle(STYLE_NORMAL, androidx.appcompat.R.style.Base_Theme_AppCompat_Dialog); // Setting
+                                                                                        // the style
     }
 
     @Nullable
@@ -61,7 +59,7 @@ public class AddNewTask extends BottomSheetDialogFragment
     {
         super.onViewCreated(view, savedInstanceState);
         newTaskText = requireView().findViewById(R.id.newTaskText);
-        newTaskSaveButton = getView().findViewById(R.id.newTaskButton);
+        saveTaskButton = getView().findViewById(R.id.saveTaskButton);
 
         boolean isUpdate = false;
 
@@ -73,7 +71,7 @@ public class AddNewTask extends BottomSheetDialogFragment
             newTaskText.setText(task);
             assert task != null;
             if(task.length()>0)
-                newTaskSaveButton.setTextColor(ContextCompat.getColor(requireContext(),
+                saveTaskButton.setTextColor(ContextCompat.getColor(requireContext(),
                         com.google.android.material.R.color.design_default_color_primary_dark));
         }
 
@@ -92,13 +90,13 @@ public class AddNewTask extends BottomSheetDialogFragment
             {
                 if(s.toString().equals(""))
                 {
-                    newTaskSaveButton.setEnabled(false);
-                    newTaskSaveButton.setTextColor(Color.GRAY);
+                    saveTaskButton.setEnabled(false);
+                    saveTaskButton.setTextColor(Color.GRAY);
                 }
                 else
                 {
-                    newTaskSaveButton.setEnabled(true);
-                    newTaskSaveButton.setTextColor
+                    saveTaskButton.setEnabled(true);
+                    saveTaskButton.setTextColor
                             (ContextCompat.getColor(requireContext(),
                                     com.google.android.material.R.color.design_default_color_primary_dark));
                 }
@@ -111,7 +109,7 @@ public class AddNewTask extends BottomSheetDialogFragment
         });
 
         final boolean finalIsUpdate = isUpdate;
-        newTaskSaveButton.setOnClickListener(new View.OnClickListener()
+        saveTaskButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)

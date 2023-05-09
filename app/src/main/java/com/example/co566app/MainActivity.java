@@ -1,17 +1,13 @@
 package com.example.co566app;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -19,12 +15,8 @@ import com.example.co566app.Adapter.ToDoAdapter;
 import com.example.co566app.Model.ToDoModel;
 import com.example.co566app.Utils.DatabaseHandler;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements DialogCloseListener
@@ -33,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
     private RecyclerView tasksRecyclerView;
     private ToDoAdapter tasksAdapter;
-    private FloatingActionButton fab;
+    private FloatingActionButton addTask;
 
     private List<ToDoModel> taskList;
 
@@ -56,14 +48,14 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
                 ItemTouchHelper(new RecyclerItemTouchHelper(tasksAdapter));
         itemTouchHelper.attachToRecyclerView(tasksRecyclerView);
 
-        fab = findViewById(R.id.fab);
+        addTask = findViewById(R.id.addTaskButton);
 
         taskList = db.getAllTasks();
         Collections.reverse(taskList);
 
         tasksAdapter.setTasks(taskList);
 
-        fab.setOnClickListener(new View.OnClickListener()
+        addTask.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)

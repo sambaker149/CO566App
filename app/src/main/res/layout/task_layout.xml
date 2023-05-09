@@ -8,18 +8,22 @@
     android:layout_marginHorizontal="16dp"
     android:layout_marginVertical="8dp">
 
+    <!-- RelativeLayout to define the size of the task entry when displayed -->
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:padding="12dp"
+        android:layout_margin="12dp">
 
+        <!-- CheckBox to allow the task to be marked as completed -->
         <CheckBox
             android:id="@+id/todoCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:paddingStart="8dp"
+            android:padding="12dp"
             android:buttonTint="@android:color/holo_green_dark"
-            tools:text="Go to the market and bring vegetables immediately today."/>
+            tools:text="Buy Milk"
+            android:textColor="@android:color/white"/>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

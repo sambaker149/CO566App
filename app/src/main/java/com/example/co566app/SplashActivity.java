@@ -13,7 +13,8 @@ public class SplashActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_splash); // Uses the layout defined in the activity_splash
+                                                // layout file
         getSupportActionBar().hide();
 
         final Intent i = new Intent(SplashActivity.this, MainActivity.class);
@@ -22,9 +23,9 @@ public class SplashActivity extends AppCompatActivity
             @Override
             public void run()
             {
-                startActivity(i);
-                finish();
+                startActivity(i); // Starts the SplashActivity
+                finish(); // Finishes the SplashActivity after a set time
             }
-        }, 2000);
+        }, 2000); // Length of time SplashActivity is displayed
     }
 }

@@ -3,23 +3,31 @@
     android:layout_height="wrap_content"
     android:padding="16dp">
 
+    <!-- EditText field to allow the task description to be entered -->
     <EditText
         android:id="@+id/newTaskText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="12dp"
         android:background="@null"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:hint="new task" />
+        android:hint="Task Description" />
 
+    <!-- Button to allow the task to be saved to the Database -->
     <Button
-        android:id="@+id/newTaskButton"
+        android:id="@+id/saveTaskButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/newTaskText"
         android:textSize="16sp"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="12dp"
         android:background="@android:color/transparent"
-        android:text="save"
+        android:text="Save Task"
         android:textAllCaps="false"
-        android:textColor="@android:color/darker_gray" />
+        android:textColor="@android:color/holo_green_dark" />
 </RelativeLayout>
